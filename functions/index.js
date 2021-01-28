@@ -5,10 +5,10 @@ const cors = require('cors');
 const monk = require('monk');
 const joi = require('joi');
 
-require('dotenv').config()
+require('dotenv').config();
 
 const app = express();
-const {mongodb} = functions.config();
+const { mongodb } = functions.config();
 
 // Middlewares
 app.use(cors({ origin: true }));
@@ -28,7 +28,7 @@ const todoUpdateSchema = joi.object({
   completed: joi.boolean().required(),
 });
 
-// Get all todoa
+// Get all todos
 app.get('/todos', async (req, res) => {
   const data = await todos.find();
   res.json(data);
@@ -45,7 +45,7 @@ app.get('/todos/:id', async (req, res) => {
 app.post('/todos', async (req, res) => {
   try {
     const todo = await todoAddSchema.validateAsync({ ...req.body });
-    const inserted = await todos.insert({...todo, completed: false, createdAt:Date.now()});
+    const inserted = await todos.insert({ ...todo, completed: false, createdAt: Date.now() });
     res.status(201).send(inserted);
   } catch (error) {
     res.status(400).send(error);
@@ -79,7 +79,5 @@ app.delete('/todos/:id', async (req, res) => {
     res.status(400).json({ message: `No item found with the id ${req.params.id}` });
   }
 });
-
-
 
 exports.api = functions.https.onRequest(app);

@@ -4,7 +4,7 @@ const cors = require('cors');
 const monk = require('monk');
 const joi = require('joi');
 
-require('dotenv').config()
+require('dotenv').config();
 
 const app = express();
 
@@ -33,7 +33,7 @@ const todoUpdateSchema = joi.object({
   completed: joi.boolean().required(),
 });
 
-// Get all todoa
+// Get all todos
 app.get('/api/todos', async (req, res) => {
   const data = await todos.find();
   res.json(data);

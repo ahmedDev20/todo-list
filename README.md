@@ -18,8 +18,6 @@ It has a full authentification system where you can sign up or in with your goog
 
 ### To get started :
 
-- React-Frontend
-
 ```sh
 $ git clone https://github.com/ahmedDev20/amazon-clone.git
 
